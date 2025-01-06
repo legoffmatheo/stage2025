@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ parent() }}
+
+<div class="carousel-container">
+   <div class="carousel">
+      <div class="slide" id="slide1">
+         <p>Bienvenue chez dantec market</p>
+      </div>
+      <div class="slide" id="slide2">
+         <p>Plus qu'un magasin.... Une expérience pédagogique</p>
+      </div>
+      <div class="slide" id="slide3">
+         <p>Une équipe à votre service</p>
+      </div>
+   </div>
+</div>
+
+<div class="carousel-pagination" id="pagination"></div>
+
+
+<div class="section2">
+    <p>Meilleures ventes du moment:</p>
+    <div class="swipeContainer">
+        <div class="swiper-button-left">
+            <button class="swiper-button-prev"></button>
+        </div>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- Swiper Slides -->
+                {% for produit in topventes %}
+                    <div class="swiper-slide" style="background-image: url('{{ produit.imageUrl }}');">
+                        <a href="{{ path('app_voir_produit', {'id': produit.id}) }}" class="swiper-link">
+                            <div class="slide-content">
+                                <span class="nom-produit">{{ produit.nomProduit }}</span>
+                                <span class="prix-produit">{{ produit.prix }} €</span>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="swiper-button-right">
+            <button class="swiper-button-next"></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-container">
+    <div class="card1" id="application">
+        <p>Téléchargez l’application Dantec Market</p>
+        <form action="{{ path('app_application') }}">
+            <button type="submit">Téléchager</button>
+        </form>
+    </div>
+    <div class="card1" id="produits">
+        <p>Commandez nos meilleurs produits</p>
+        <form action="{{ path('app_les_produits') }}">
+            <button type="submit">Commander</button>
+        </form>
+    </div>
+    <div class="card1" id="actualité">
+        <p>Découvrez  l’actualité sur le magasin</p>
+        <form action="{{ path('app_actualite') }}">
+            <button type="submit">Découvrir</button>
+        </form>
+    </div>
+</div>
+
+<div class="flex-container">
+   <div class="col col1">
+      <div id="app8" class="cell cell1"></div>
+      <div id="app9" class="cell cell1"></div>
+   </div>
+   <div class="col col2">
+      <div id="app7" class="cell cell3"></div>
+   </div>
+   <div class="col col3">
+      <div id="app10" class="cell cell1"></div>
+      <div id="app11" class="cell cell1"></div>
+   </div>
+</div>
+
+
+<div class="card-container">
+    <div class="card2" id="catalogue">
+        <p>Découvrez les nouveautés de ce mois</p>
+        <form action="{{ path('app_catalogue') }}">
+            <button type="submit">Découvrir</button>
+        </form>
+    </div>
+    <div class="card2" id="partenaires">
+        <p>Découvrez  nos partenaires</p>
+        <form action="{{ path('app_partenaire') }}">
+            <button type="submit">Découvrir</button>
+        </form>
+    </div>
+</div>
+
+<div class="avis-container">
+    <p>Nos élèves sont ceux qui en parlent le mieux:</p>
+    {% for comment in dernierscommentaires %}
+        <div class="card-avis">
+            <div class="etoiles" data-rating="{{ comment.note }}">
+            
+                {% for i in 1..5 %}
+                    <p id="{{ i }}">★</p>
+                {% endfor %}
+            </div>
+            <div class="titre">{{ comment.commentaire }}</div>
+            <div class="avis">{{ comment.texteAvis | default('Pas de texte disponible') }}</div>
+            <div class="date">{{ comment.dateCommentaire | date('Y-m-d') }}</div>
+        </div>
+    {% endfor %}
+    <div class="boutonAvis">
+        <button>Voir tout les avis</button>
+    </div>
+</div>
+
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let currentIndex = 0;
+            const totalSlides = document.querySelectorAll(".slide").length;
+            const paginationContainer = document.getElementById("pagination");
+
+            function updateCarousel() {
+                const carousel = document.querySelector(".carousel");
+                const slideWidth = document.querySelector(".slide").clientWidth;
+                carousel.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+
+                // Met à jour l'état actif du bouton de pagination
+                const paginationButtons = document.querySelectorAll(".pagination-button");
+                paginationButtons.forEach((button, index) => {
+                    button.classList.toggle("active", index === currentIndex);
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            // Crée les boutons de pagination
+            for (let i = 0; i < totalSlides; i++) {
+                const button = document.createElement("button");
+                button.className = "pagination-button";
+                button.addEventListener("click", () => {
+                    currentIndex = i;
+                    updateCarousel();
+                });
+                paginationContainer.appendChild(button);
+            }
+
+            updateCarousel(); // Initialise l'état initial du carrousel
+
+            setInterval(nextSlide, 8000); // Change de diapositive toutes les 8 secondes
+        });
+</script>
+
+
+ <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+
+<script>
+ var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 15,
+        stretch: 0,
+        depth: 300,
+        modifier: 1,
+        slideShadows: true,
+      },
+      loop: true,
+
+      navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+    });
+</script>
+
+{% endblock %}
