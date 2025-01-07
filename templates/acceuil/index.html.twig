@@ -1,108 +1,198 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<div class="page-container">
 {{ parent() }}
-<div class="carousel-container">
-   <div class="carousel">
-      <div class="slide" id="slide1">
-         <p>Bienvenue chez dantec market</p>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Bundle JS (inclut Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+   <div class="carousel-container container-fluid">
+   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicators (optional) -->
+      <div class="carousel-indicators">
+         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <div class="slide" id="slide2">
-         <p>Plus qu'un magasin.... Une expérience pédagogique</p>
-      </div>
-      <div class="slide" id="slide3">
-         <p>Une équipe à votre service</p>
-      </div>
-   </div>
-</div>
-<div class="carousel-pagination" id="pagination"></div>
-<div class="section2">
-   <p>Meilleures ventes du moment:</p>
-   <div class="swipeContainer">
-      <div class="swiper mySwiper">
-         <div class="swiper-wrapper">
-            <!-- Swiper Slides -->
-            {% for produit in topventes %}
-            <div class="swiper-slide" style="background-image: url('{{ produit.imageUrl }}');">
-               <a href="{{ path('app_voir_produit', {'id': produit.id}) }}" class="swiper-link">
-                  <div class="slide-content">
-                     <div class="nom-produit">{{ produit.nomProduit }}</div>
-                     <div class="prix-produit">{{ produit.prix }} €</div>
-                  </div>
-               </a>
+
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+         <!-- Slide 1 -->
+         <div class="carousel-item active">
+            <img src="/images/dantecMarket1.1.jpg" class="d-block w-100" alt="">
+            <div class="carousel-caption d-flex align-items-center justify-content-center">
+               <p class="text-center fs-1 fs-md-3 fs-lg-4 text-white text-shadow text-wrap">Bienvenue chez dantec market</p>
             </div>
-            {% endfor %}
+         </div>
+
+         <!-- Slide 2 -->
+  <div class="carousel-item">
+    <img src="/images/dantecMarket2.1.jpg" class="d-block w-100" alt="">
+    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+        <p class="text-line1 text-center fs-1 fs-md-3 fs-lg-4 text-white text-shadow">Plus qu'un magasin....</p>
+        <p class="text-line2 text-center fs-1 fs-md-3 fs-lg-4 text-white text-shadow">Une expérience pédagogique</p>
+    </div>
+</div>
+
+
+
+         <!-- Slide 3 -->
+         <div class="carousel-item">
+            <img src="/images/partenaires.1.jpg" class="d-block w-100" alt="">
+            <div class="carousel-caption d-flex align-items-center justify-content-center">
+               <p class="text-center fs-1 fs-md-3 fs-lg-4 text-white text-shadow text-wrap">Une équipe à votre service</p>
+            </div>
          </div>
       </div>
-      <div class="swiper-button-right">
-         <button class="swiper-button-next"></button>
-      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Next</span>
+      </button>
    </div>
 </div>
-<div class="card-container">
-   <div class="card1" id="application">
-      <p>Téléchargez l’application Dantec Market</p>
-      <form action="{{ path('app_application') }}">
-         <button type="submit">Télécharger</button>
-      </form>
-   </div>
-   <div class="card1" id="produits">
-      <p>Commandez nos meilleurs produits</p>
-      <form action="{{ path('app_les_produits') }}">
-         <button type="submit">Commander</button>
-      </form>
-   </div>
-   <div class="card1" id="actualité">
-      <p>Découvrez  l’actualité du magasin</p>
-      <form action="{{ path('app_actualite') }}">
-         <button type="submit">Découvrir</button>
-      </form>
-   </div>
-</div>
-<div class="flex-container">
-   <div class="col col1">
-      <div id="app8" class="cell cell1"></div>
-      <div id="app9" class="cell cell1"></div>
-   </div>
-   <div class="col col2">
-      <div id="app7" class="cell cell3"></div>
-   </div>
-   <div class="col col3">
-      <div id="app10" class="cell cell1"></div>
-      <div id="app11" class="cell cell1"></div>
-   </div>
-</div>
-<div class="card-container">
-   <div class="card2" id="catalogue">
-      <p>Découvrez les nouveautés de ce mois</p>
-      <form action="{{ path('app_catalogue') }}">
-         <button type="submit">Découvrir</button>
-      </form>
-   </div>
-   <div class="card2" id="partenaires">
-      <p>Découvrez  nos partenaires</p>
-      <form action="{{ path('app_partenaires_liste') }}">
-         <button type="submit">Découvrir</button>
-      </form>
-   </div>
-</div>
-<div class="avis-container">
-   <p>Nos élèves sont ceux qui en parlent le mieux:</p>
-   {% for comment in dernierscommentaires %}
-   <div class="card-avis">
-      <div class="etoiles" data-rating="{{ comment.note }}">
-         {% for i in 1..5 %}
-         <p id="{{ i }}">★</p>
+
+<div class="section2 container">
+   <p class="text-center fs-3 fw-bold mb-4">Meilleures ventes du moment :</p>
+   
+   <!-- Swiper Slider -->
+   <div id="swiperTopVentes" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+         {% for produit in topventes %}
+         <div class="carousel-item {% if loop.first %}active{% endif %}">
+            <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+               <!-- Utilisation de l'image dans l'ID ou la classe -->
+               <div class="d-flex justify-content-center align-items-center" style="background-image: url('{{ produit.imageUrl }}'); background-size: cover; background-position: center; width: 100%; height: 100%;">
+                  <a href="{{ path('app_voir_produit', {'id': produit.id}) }}" class="text-decoration-none text-white text-center bg-dark bg-opacity-50 p-3 rounded">
+                     <h5 class="mb-2">{{ produit.nomProduit }}</h5>
+                     <p class="mb-0">{{ produit.prix }} €</p>
+                  </a>
+               </div>
+            </div>
+         </div>
          {% endfor %}
       </div>
-      <div class="titre">{{ comment.commentaire }}</div>
-      <div class="avis">{{ comment.texteAvis | default('Pas de texte disponible') }}</div>
-      <div class="date">{{ comment.dateCommentaire | date('Y-m-d') }}</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#swiperTopVentes" data-bs-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#swiperTopVentes" data-bs-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Next</span>
+      </button>
    </div>
-   {% endfor %}
 </div>
-<div class="boutonAvis">
-   <button>Voir tout les avis</button>
+<!-- Cards Section -->
+<div class="card-container container my-5">
+   <div class="row g-4 justify-content-center">
+      <!-- Card 1 -->
+      <div class="col-12 col-md-4 d-flex justify-content-center">
+         <div class="card1 card text-center shadow-lg p-4 w-100 h-100" id="application">
+            <div class="card-body">
+               <p class="card-text fs-4 fw-bold">Téléchargez l’application Dantec Market</p>
+               <form action="{{ path('app_application') }}">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">Télécharger</button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-12 col-md-4 d-flex justify-content-center">
+         <div class="card1 card text-center shadow-lg p-4 w-100 h-100" id="produits">
+            <div class="card-body">
+               <p class="card-text fs-4 fw-bold">Commandez nos meilleurs produits</p>
+               <form action="{{ path('app_les_produits') }}">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">Commander</button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-12 col-md-4 d-flex justify-content-center">
+         <div class="card1 card text-center shadow-lg p-4 w-100 h-100" id="actualité">
+            <div class="card-body">
+               <p class="card-text fs-4 fw-bold">Découvrez l’actualité du magasin</p>
+               <form action="{{ path('app_actualite') }}">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">Découvrir</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
+
+<!-- Section Cells -->
+<div class="section-cells container my-5">
+   <div class="row gx-4 gy-4">
+      <!-- Colonne gauche -->
+      <div class="col-12 col-md-4 d-flex flex-column">
+         <div id="app8" class="cell cell1 mb-3"></div>
+         <div id="app9" class="cell cell1 mb-3"></div>
+      </div>
+      
+      <!-- Colonne centrale -->
+      <div class="col-12 col-md-4">
+         <div id="app7" class="cell cell3"></div>
+      </div>
+      
+      <!-- Colonne droite -->
+      <div class="col-12 col-md-4 d-flex flex-column">
+         <div id="app10" class="cell cell1 mb-3"></div>
+         <div id="app11" class="cell cell1 mb-3"></div>
+      </div>
+   </div>
+</div>
+
+<!-- Section 2: Cards -->
+<div class="section-cards my-5">
+   <div class="card-container container d-flex flex-wrap justify-content-around">
+      <div class="card2 card text-center p-3 m-2" id="catalogue">
+         <p>Découvrez les nouveautés de ce mois</p>
+         <form action="{{ path('app_catalogue') }}">
+            <button type="submit" class="btn btn-primary">Découvrir</button>
+         </form>
+      </div>
+      <div class="card2 card text-center p-3 m-2" id="partenaires">
+         <p>Découvrez nos partenaires</p>
+         <form action="{{ path('app_partenaires_liste') }}">
+            <button type="submit" class="btn btn-primary">Découvrir</button>
+         </form>
+      </div>
+   </div>
+</div>
+
+<div class="avis-container container">
+   <p class="text-center">Nos élèves sont ceux qui en parlent le mieux:</p>
+   <div class="row">
+      {% for comment in dernierscommentaires %}
+      <div class="col-12 col-md-4">
+         <div class="card-avis card p-3 m-2">
+            <div class="etoiles" data-rating="{{ comment.note }}">
+               {% for i in 1..5 %}
+               <p id="{{ i }}">★</p>
+               {% endfor %}
+            </div>
+            <div class="titre">{{ comment.commentaire }}</div>
+            <div class="avis">{{ comment.texteAvis | default('Pas de texte disponible') }}</div>
+            <div class="date">{{ comment.dateCommentaire | date('Y-m-d') }}</div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+</div>
+
+<div class="boutonAvis text-center">
+   <button class="btn btn-secondary">Voir tous les avis</button>
+</div>
+
 {% block footer %}
 {{ parent() }}
 {% endblock %}

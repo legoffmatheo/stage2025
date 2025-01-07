@@ -2,6 +2,187 @@ body {
     background-color: #2D2D2D;
 }
 
+.page-container {
+    background-color: #2D2D2D; /* Fond noir */
+    color: white; /* Texte blanc pour s'assurer de la lisibilité */
+    min-height: 100vh; /* Pour couvrir toute la hauteur de la page */
+    padding: 0; /* Supprimer les marges */
+    margin: 0;
+}
+/* Assurer que le carousel prend toute la largeur et hauteur de l'écran */
+.text-line1 {
+    margin-bottom: 7%; /* Ajoute un espacement entre les lignes */
+}
+
+.text-line2 {
+    margin-top: 7%; /* Optionnel, pour ajuster la séparation */
+}
+/* Section contenant les cellules */
+.section-cells {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Style de la cellule */
+.cell {
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Carrés (cell1) */
+.cell1 {
+    min-height: 300px; /* Taille des carrés */
+    font-size: 1.5rem;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Rectangle central (cell3) */
+.cell3 {
+    min-height: 500px; /* Taille du rectangle central */
+    font-size: 2rem;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* Pour ajouter de l'espace entre les sections */
+.card-container, .section-cells, .section-cards {
+    margin-bottom: 60px;  /* Espace entre les différentes sections */
+}
+
+/* Espacement à l'intérieur des cards */
+.card1, .card2 {
+    margin-bottom: 20px;  /* Espace entre les cartes */
+}
+
+/* Sections des cellules */
+.section-cells .row {
+    gap: 30px;  /* Espace entre les colonnes dans la section cells */
+}
+
+/* Optionnel: Pour ajuster les tailles des cellules en fonction de la largeur */
+.cell1, .cell3 {
+    min-height: 200px;  /* Hauteur minimale pour les cellules */
+}
+
+/* Mobile: Ajuster les tailles et l'espacement pour les petits écrans */
+@media (max-width: 767px) {
+    .section-cells .row {
+        gap: 20px;  /* Moins d'espace sur mobile */
+    }
+    
+    .section-cells .col-md-4 {
+        margin-bottom: 20px;  /* Moins d'espace entre les colonnes */
+    }
+    
+    .card-container .col-12 {
+        margin-bottom: 30px;  /* Ajouter de l'espace sous chaque card en mode mobile */
+    }
+    
+    .card-container .card {
+        padding: 15px; /* Moins de padding sur mobile */
+    }
+}
+
+/* Sur les tablettes et grands écrans */
+@media (min-width: 768px) {
+    .section-cells {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        padding: 10px;
+        gap: 20px; /* Ajoute de l'espace entre les blocs en mobile */
+    }
+
+    .cell1 {
+        min-height: 500px;
+        font-size: 1.8rem;
+    }
+
+    .cell3 {
+        min-height: 600px;
+        font-size: 2.2rem;
+    }
+}
+
+/* Sur les petits écrans (mobiles) */
+@media (max-width: 767px) {
+    .section-cells {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        padding: 10px;
+    }
+
+    /* Carrés (cell1) ajustés */
+    .cell1 {
+        min-height: 300px; /* Réduit la hauteur pour mobile */
+        font-size: 1.4rem; /* Réduit la taille du texte */
+        padding: 10px; /* Réduit l'espacement interne */
+        margin-bottom: 10px; /* Ajoute un espacement */
+    }
+
+    /* Rectangle central (cell3) ajusté */
+    .cell3 {
+        min-height: 350px; /* Réduit la hauteur pour mobile */
+        font-size: 1.6rem; /* Réduit la taille du texte */
+        padding: 15px; /* Réduit l'espacement interne */
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .text-line1,
+    .text-line2 {
+        font-size: 10%; /* Ajustement des tailles pour petits écrans */
+    }}
+  /* Les éléments du carousel doivent occuper toute la largeur et hauteur */
+  .carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Assurer que l'image couvre toute la surface sans déformation */
+  .carousel-item img {
+    object-fit: cover; /* L'image couvre toute la zone sans se déformer */
+    width: 100%; /* Prendre toute la largeur de l'écran */
+    height: 100%; /* Prendre toute la hauteur de l'écran */
+  }
+  
+  /* Positionnement du texte dans la caption */
+  .carousel-caption {
+    top: 50%; /* Placer le texte au centre verticalement */
+    left: 50%; /* Placer le texte au centre horizontalement */
+    transform: translate(-15%, -50%); /* Ajuste pour le centrage exact */
+    text-align: center; /* Centrer le texte */
+    color: white; /* Texte blanc */
+    padding: 20%; /* Ajouter un peu de padding autour du texte */
+    box-sizing: border-box; /* Assure que le padding est inclus dans les dimensions */
+    width: 100%; /* Prendre toute la largeur de la diapositive */
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: auto; /* Permet de s'ajuster à la taille du texte */
+    word-wrap: break-word; /* Permet au texte de passer à la ligne automatiquement */
+    white-space: normal; /* S'assure que le texte se replie et ne reste pas sur une seule ligne */
+    font-size: inherit; /* La taille du texte s'héritera des classes Bootstrap */
+    margin-bottom: 0.5rem; /* Ajustez cette valeur selon vos besoins */
+
+  }
+    
 *{
     margin: 0;
     padding: 0;
@@ -733,10 +914,6 @@ footer {
     color: rgba(223, 186, 97, 0.80);
 }
 
-
-
-
-
 @media screen and (min-width: 1920px) {
     .navbar-left, .navbar-middle, .navbar-right {
         padding-left: 5%;
@@ -761,11 +938,6 @@ footer {
         font-size: 2.4vh;
     }
 
-    .slide p {
-        width: 70%;
-        font-size: 3.6vh;
-    }
-
     .pagination-button {
         width: 1.5vh;
         height: 1.5vh;
@@ -779,8 +951,11 @@ footer {
     }
 
     .card-container p {
-        width: 70%;
+        width: 100%;
         font-size: 3.6vh;
+        word-wrap: break-word;
+        white-space: normal;
+        margin: 0;
     }
 
     .card-container .card1, .card-container .card2 {
@@ -815,19 +990,14 @@ footer {
     }
 }
 
-@media screen and (max-width: 1920px) {
-    /* Ajouter des styles adaptés aux résolutions inférieures si nécessaire */
-}
-
-/* Ajout de styles pour les résolutions spécifiques des téléphones */
 @media screen and (max-width: 767px) {
     .navbar {
         height: calc(7vh + 0px);
     }
 
     .navbar-left, .navbar-middle, .navbar-right {
-        width: 30%;
-        padding: 10px;
+        width: 100%; /* Utilisation de 100% pour forcer l'alignement correct */
+        padding: 10px 0; /* Uniformisation du padding */
     }
 
     .navbar-middle img {
@@ -849,27 +1019,16 @@ footer {
         font-size: 14px;
     }
 
-    .carousel-container {
-        width: 100%;
-        height: 17%;
-    }
-
-    .slide p {
-        width: 20%;
-        height: 10px;
-        font-size: 35px;
-        margin: 12.5vh 9.5vh;
-        -webkit-text-stroke: 1.2px #2D2D2D;
-    }
-
-    .carousel-pagination {
-        bottom: 715px;
-    }
-
     .pagination-button {
         width: 8px;
         height: 8px;
         margin: 0 3px;
+    }
+
+    .card-container {
+        display: flex; /* Assurez-vous que flexbox est activé */
+        flex-wrap: wrap; /* Permet aux enfants de se répartir correctement */
+        justify-content: space-around; /* Distribution homogène des cartes */
     }
 
     .card-container button {
@@ -879,13 +1038,17 @@ footer {
     }
 
     .card-container p {
-        width: 90%;
+        width: 100%;
         font-size: 24px;
+        word-wrap: break-word;
+        white-space: normal;
+        margin: 0;
     }
 
     .card-container .card1, .card-container .card2 {
-        width: 80vw;
-        height: 40vh;
+        width: 100%; /* 100% pour que les cartes prennent toute la largeur disponible */
+        height: auto; /* Auto pour permettre un ajustement dynamique de la hauteur */
+        margin-bottom: 20px; /* Ajout d'espacement entre les cartes */
     }
 
     .avis, .titre, .date {
@@ -897,11 +1060,11 @@ footer {
     }
 
     footer {
-        height: 60%;
+        height: auto; /* Ajustement dynamique pour éviter les débordements */
     }
 
     .container-foot {
-        width: 80%;
+        width: 100%; /* S'assurer que le pied de page occupe toute la largeur */
         margin-right: 0;
         margin-bottom: 20px;
     }
@@ -915,5 +1078,4 @@ footer {
         height: 30px;
         font-size: 12px;
     }
-
 }
