@@ -17,50 +17,7 @@ body {
 .text-line2 {
     margin-top: 7%; /* Optionnel, pour ajuster la séparation */
 }
-/* Section contenant les cellules */
-.section-cells {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 0 15px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
 
-/* Style de la cellule */
-.cell {
-    border: 2px solid #ccc;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Carrés (cell1) */
-.cell1 {
-    min-height: 300px; /* Taille des carrés */
-    font-size: 1.5rem;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Rectangle central (cell3) */
-.cell3 {
-    min-height: 500px; /* Taille du rectangle central */
-    font-size: 2rem;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
 /* Pour ajouter de l'espace entre les sections */
 .card-container, .section-cells, .section-cards {
     margin-bottom: 60px;  /* Espace entre les différentes sections */
