@@ -27,28 +27,88 @@
     {% endif %}
 
 <div class="flexrow">
-        <div class="image-register-login"></div>
+    <div class="image-register-login"></div>
 
-
-        <div class="registration-frame">
+    <div class="registration-frame">
+        <p>Se Connecter</p>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
         
-            <p>Se Connecter</p>
-            <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-            
-            <br>
-            <label for="inputPassword">Mot de Passe </label>
-            <div class="password-icon"></div>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-            
-            <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
-<br>
-            <button type="submit" class="registerButton">Se Connecter</button>
-            <br>
-            <a href="{{ path('app_register') }}">Pas encore de compte ? S'inscrire</a>
-        </form>
+        <br>
+        <label for="inputPassword">Mot de Passe </label>
+        <div class="password-icon"></div>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <br>
+        <button type="submit" class="registerButton">Se Connecter</button>
+        <br>
+        <a href="{{ path('app_register') }}">Pas encore de compte ? S'inscrire</a>
     </div>
 </div>
+
+<style>
+/* Disposition mobile */
+@media (max-width: 768px) {
+    /* Flexbox container */
+    .flexrow {
+        display: flex;
+        flex-direction: column; /* Passe en colonne */
+        width: 100%; /* Assure que le conteneur occupe toute la largeur */
+        margin: 0; /* Retirer les marges externes */
+        padding: 0; /* Retirer les padding externes */
+    }
+
+    /* Image section */
+    .image-register-login {
+        order: -1; /* Place l'image au-dessus */
+        height: 200px; /* Ajustement pour mobile */
+        display: block; /* Assure que l'élément reste visible */
+        width: 100%; /* L'image occupe toute la largeur */
+        object-fit: cover; /* L'image est redimensionnée en fonction du conteneur */
+    }
+
+    /* Formulaire */
+    .registration-frame {
+        order: 0; /* Formulaire en dessous */
+        width: 100%; /* Le formulaire prend toute la largeur */
+        padding: 20px; /* Un peu de marge intérieure pour un meilleur visuel */
+        box-sizing: border-box; /* Inclut le padding dans la largeur */
+        display: flex;
+        flex-direction: column; /* Organise les éléments du formulaire en colonne */
+    }
+
+    /* Champs de formulaire */
+    .form-control {
+        width: 100%; /* Les champs de formulaire occupent toute la largeur */
+        box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+        margin-bottom: 10px; /* Espacement entre les champs */
+        padding: 10px; /* Un peu d'espace à l'intérieur des champs */
+        font-size: 16px; /* Taille du texte */
+    }
+
+    /* Bouton d'inscription */
+    .registerButton {
+        width: 100%; /* Le bouton prend toute la largeur */
+        padding: 10px; /* Un peu d'espace pour rendre le bouton plus accessible */
+        font-size: 16px; /* Ajustement de la taille du texte */
+        cursor: pointer; /* Indiquer que c'est cliquable */
+        box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+        margin-top: 10px; /* Un peu de marge au-dessus du bouton */
+    }
+
+    /* Lien sous le formulaire */
+    a {
+        display: block; /* Le lien prend toute la largeur disponible */
+        text-align: center; /* Centrer le lien */
+        margin-top: 10px; /* Un peu de marge au-dessus du lien */
+        font-size: 14px; /* Taille du texte */
+        color: #007BFF; /* Couleur bleue pour le lien */
+        text-decoration: none; /* Supprimer la décoration par défaut */
+    }
+}
+</style>
+
 <!-- ICON SCRIPT -->
 <script src="https://unpkg.com/feather-icons"></script>
 <script>
