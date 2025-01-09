@@ -13,36 +13,46 @@
 {% endblock %}
 {% block body %}
 {% block navbar %}
-<div class="navbar">
-   <div class="navbar-left">
-      <a href="{{ path('app_les_produits') }}" class="textNav">Nos produits</a>
-      <a href="{{ path('app_histoire') }}" class="textNav">Notre Histoire</a>
+<div class="navbar bg-dark text-white">
+   <div class="container-fluid">
+      <div class="row w-100 align-items-center">
+         <!-- Navbar Left -->
+         <div class="col-4 d-flex justify-content-start align-items-center">
+            <a href="{{ path('app_les_produits') }}" class="textNav text-white me-3">Nos produits</a>
+            <a href="{{ path('app_histoire') }}" class="textNav text-white">Notre Histoire</a>
+         </div>
+
+         <!-- Navbar Middle -->
+         <div class="navbar-middle col-4  justify-content-center">
+            <a href="{{ path('app_acceuil') }}">
+               <img src="/images/logo.jpg" alt="Logo" class="logo img-fluid">
+            </a>
+         </div>
+
+         <!-- Navbar Right -->
+         <div class="col-4 d-flex justify-content-end align-items-center">
+            {% if is_granted('ROLE_USER') %}
+               <a href="{{ path('app_message') }}" class="textNav text-white me-3">Contactez nous</a>
+            {% endif %}
+            <a href="{{ is_granted('ROLE_USER') ? path('app_logout') : path('app_login') }}" class="btn btn-primary me-3">
+               {{ is_granted('ROLE_USER') ? 'Logout' : 'Login' }}
+            </a>
+            {% if is_granted('ROLE_USER') %}
+               <a href="/commandes/voirpanier" class="iconPanier me-3">
+                  <i class="fa fa-shopping-cart" style="color: white; font-size: 24px;"></i>
+               </a>
+               <a href="/commandes/profil" class="iconProfil">
+                  <i class="fa fa-user-circle" style="color: white; font-size: 24px;"></i>
+               </a>
+            {% endif %}
+         </div>
+      </div>
    </div>
-   <div class="navbar-middle">
-      <a href="{{ path('app_acceuil') }}"><img src="/images/logo.jpg"></img></a>
-   </div>
-   <div class="navbar-right">
-   {% if is_granted('ROLE_USER') %}
-      <a href="{{ path('app_message') }}" class="textNav">Contactez nous</a>
-      {% endif %}
-      <a href="{{ is_granted('ROLE_USER') ? path('app_logout') : path('app_login') }}" class="boutonNav">
-      {{ is_granted('ROLE_USER') ? 'Logout' : 'Login' }}
-      </a>
-      {% if is_granted('ROLE_USER') %}
-      <a href="/commandes/voirpanier" class="iconPanier">
-      <i class="fa fa-shopping-cart" style="color: white; font-size: 24px;"></i>
-      </a>
-      <a href="/commandes/profil" class="iconProfil">
-      <i class="fa fa-user-circle" style="color: white; font-size: 24px;"></i>
-      </a>
-      {% endif %}
-   </div>
-   <!-- Barre de recherche à droite de la page -->
-   
 </div>
 {% endblock %}
 {% endblock %}
 {% block footer %}{% endblock %}
+<div class="foot">
 <div class="footer-container" id="premiere">
    <div class="container-foot" id="haut">
       <p>Informations légales:</p>
@@ -74,6 +84,13 @@
       </a>
    </div>
 </div>
+</div>
+
+<style>
+.foot{
+          background-color: #2D2D2D;  
+}
+</style>
 {% block javascripts %}
 {{ encore_entry_script_tags('test') }}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
