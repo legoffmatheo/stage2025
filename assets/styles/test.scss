@@ -399,23 +399,22 @@ body {
   }
 
   .swiper-slide img {
-    
     display: block;
     width: 80%;
     -webkit-box-reflect: below 1px linear-gradient(transparent, transparent , #0002 , #0004);
   }
 
   .flex-container {
-    width: 55%;
+    width: 89%;
     display: flex;
-    margin-top: 40vh;
-    margin-bottom: 5vh;
     margin-left: auto;
     margin-right: auto;
 }
 
 @media (max-width: 768px) {
     .flex-container {
+        margin-top: 43vh;
+        margin-bottom: 0vh;
         margin-left: 0; /* Positionne à gauche */
         margin-right: auto; /* Assure qu'il n'est pas centré ou à droite */
     }
