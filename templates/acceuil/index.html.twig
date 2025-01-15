@@ -142,23 +142,21 @@
    </div>
 </div>
 
-<!-- Section 2: Cards -->
-<div class="section-cards my-5">
-   <div class="card-container container d-flex flex-wrap justify-content-around">
-      <div class="card2 card text-center p-3 m-2" id="catalogue">
-         <p>Découvrez les nouveautés de ce mois</p>
-         <form action="{{ path('app_catalogue') }}">
-            <button type="submit" class="btn btn-primary">Découvrir</button>
-         </form>
-      </div>
-      <div class="card2 card text-center p-3 m-2" id="partenaires">
-         <p>Découvrez nos partenaires</p>
-         <form action="{{ path('app_partenaires_liste') }}">
-            <button type="submit" class="btn btn-primary">Découvrir</button>
-         </form>
-      </div>
+<div class="card-container container d-flex flex-wrap justify-content-around align-items-stretch">
+   <div class="card2 card text-center p-3 m-2" id="catalogue">
+      <p>Découvrez les nouveautés de ce mois</p>
+      <form action="{{ path('app_catalogue') }}">
+         <button type="submit" class="btn btn-primary">Découvrir</button>
+      </form>
+   </div>
+   <div class="card2 card text-center p-3 m-2" id="partenaires">
+      <p>Découvrez nos partenaires</p>
+      <form action="{{ path('app_partenaires_liste') }}">
+         <button type="submit" class="btn btn-primary">Découvrir</button>
+      </form>
    </div>
 </div>
+
 
 <div class="avis-container container">
    <p class="text-center">Nos élèves sont ceux qui en parlent le mieux:</p>
