@@ -94,12 +94,13 @@ export default {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Ajoute une ombre portée noire pour améliorer le contraste */
 
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%; /* Place le titre au milieu verticalement */
+  left: 50%; /* Place le titre au milieu horizontalement */
+  transform: translate(-45%, -50%); /* Centre précisément en ajustant l'alignement */
   color: white;
   font-size: 3em; /* Augmentez la taille de la police */
   padding: 20px;
-  text-align: right;
+  text-align: center;
   cursor: pointer; /* Change le curseur en pointeur */
   max-width: 30%; /* Limite la largeur pour encourager le texte à passer sur deux lignes */
   line-height: 1.2; /* Ajuste l'espacement entre les lignes pour une meilleure lisibilité */
