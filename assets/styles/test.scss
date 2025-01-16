@@ -415,7 +415,7 @@ body {
     .flex-container {
         margin-top: 43vh;
         margin-bottom: 0vh;
-        margin-left: 0; /* Positionne à gauche */
+        margin-left: auto; /* Positionne à gauche */
         margin-right: auto; /* Assure qu'il n'est pas centré ou à droite */
     }
 }
@@ -511,7 +511,6 @@ body {
   
 
 .card-container {
-   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -531,10 +530,8 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    
     min-width: 20vh; /* Assure un minimum de largeur */
-    min-height: 5vh; /* Assure un minimum de hauteur */
-    
+    min-height: 5vh; /* Assure un minimum de hauteur */ 
 }
 
 
@@ -640,7 +637,6 @@ body {
 }
 
 .avis-container {
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -657,7 +653,7 @@ body {
     line-height: normal;
     margin-top: 2vh;
     margin-bottom: 5vh;
-    margin-right: 30vh;
+    margin-right: 0vh;
 }
 
 .card-avis {
@@ -1086,7 +1082,7 @@ footer {
     max-width: 400px; // Facultatif, limite la taille maximale
     min-height: 200px; // Définit une hauteur minimale pour les cartes
   }
-  
+
   
 
   
