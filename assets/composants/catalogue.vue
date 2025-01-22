@@ -1,5 +1,5 @@
 <template>
-  <div class="bande-image">
+  <div class="body bande-image">
     <img src="/images/catalogue.jpg" alt="Image descriptive">
     <h1 class="titre-mois" @click="chargerCatalogueMoisCourant">Téléchargez le catalogue de {{ moisCourant }}</h1>
   </div>
@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style scoped>
+ .body {
+    background-color: #2D2D2D;
+    }
 .bande-image {
   position: relative;
   height: 50vw;
@@ -102,7 +105,7 @@ export default {
   padding: 20px;
   text-align: center;
   cursor: pointer; /* Change le curseur en pointeur */
-  max-width: 30%; /* Limite la largeur pour encourager le texte à passer sur deux lignes */
+  max-width: 100%; /* Limite la largeur pour encourager le texte à passer sur deux lignes */
   line-height: 1.2; /* Ajuste l'espacement entre les lignes pour une meilleure lisibilité */
 }
 
