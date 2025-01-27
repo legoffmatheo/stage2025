@@ -1,5 +1,5 @@
-<template>
-  <div class="body bande-image">
+<template class="body">
+  <div class="bande-image">
     <img src="/images/catalogue.jpg" alt="Image descriptive">
     <h1 class="titre-mois" @click="chargerCatalogueMoisCourant">Téléchargez le catalogue de {{ moisCourant }}</h1>
   </div>
@@ -99,7 +99,7 @@ export default {
   position: absolute;
   top: 50%; /* Place le titre au milieu verticalement */
   left: 50%; /* Place le titre au milieu horizontalement */
-  transform: translate(-45%, -50%); /* Centre précisément en ajustant l'alignement */
+  transform: translate(-50%, -50%); /* Centre précisément en ajustant l'alignement */
   color: white;
   font-size: 3em; /* Augmentez la taille de la police */
   padding: 20px;
