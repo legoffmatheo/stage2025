@@ -36,7 +36,7 @@
             {% if is_granted('ROLE_USER') %}
                <a href="{{ path('app_message') }}" class="textNav text-white me-3">Contactez nous</a>
             {% endif %}
-            <a href="{{ is_granted('ROLE_USER') ? path('app_logout') : path('app_login') }}" class="btn btn-primary me-3">
+            <a href="{{ is_granted('ROLE_USER') ? path('app_logout') : path('app_login') }}" class="btn btn-warning me-3">
                {{ is_granted('ROLE_USER') ? 'Logout' : 'Login' }}
             </a>
             {% if is_granted('ROLE_USER') %}
