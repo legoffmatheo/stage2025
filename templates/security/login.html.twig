@@ -29,9 +29,14 @@
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
         
         <br>
-        <label for="inputPassword">Mot de Passe </label>
-        <div class="password-icon"></div>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <label for="inputPassword">Mot de Passe</label>
+        <div class="password-wrapper">
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <div class="password-icon" onclick="togglePassword()">
+                <i id="eye-icon" data-feather="eye"></i>
+                <i id="eye-icon-off" data-feather="eye-off" style="display: none;"></i>
+            </div>
+        </div>
         
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <br>
@@ -104,11 +109,59 @@
         text-decoration: none; /* Supprimer la décoration par défaut */
     }
 }
+
+/* Conteneur du champ de mot de passe */
+.password-wrapper {
+    position: relative; /* Permet de positionner l'icône de manière absolue par rapport à ce conteneur */
+    width: 100%; /* Le champ de mot de passe prend toute la largeur disponible */
+}
+
+/* Style du champ de saisie du mot de passe */
+.password-wrapper .form-control {
+    padding-right: 40px; /* Ajoute un espace à droite pour éviter que l'icône recouvre le texte */
+}
+
+/* Style de l'icône permettant d'afficher/cacher le mot de passe */
+.password-icon {
+    position: absolute; /* Positionne l'icône par rapport au conteneur parent (password-wrapper) */
+    right: 10px; /* Place l'icône à 10px du bord droit du champ */
+    top: 50%; /* Aligne l'icône verticalement au centre du champ */
+    transform: translateY(-50%); /* Ajuste l'alignement vertical pour être bien centré */
+    cursor: pointer; /* Change le curseur en pointeur pour indiquer que l'icône est cliquable */
+    font-size: 20px; /* Définit la taille de l'icône */
+    color: #888; /* Couleur de l'icône par défaut */
+    z-index: 10; /* S'assure que l'icône reste au-dessus du champ */
+}
+
+/* Changement de couleur de l'icône au survol */
+.password-icon:hover {
+    color: #333; /* Fait ressortir l'icône lorsqu'on passe la souris dessus */
+}
 </style>
 
 <!-- ICON SCRIPT -->
 <script src="https://unpkg.com/feather-icons"></script>
 <script>
 feather.replace();
+
+function togglePassword() {
+    let passwordInput = document.querySelector("#inputPassword");
+    let eyeIcon = document.querySelector("#eye-icon");
+    let eyeIconOff = document.querySelector("#eye-icon-off");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.style.display = "none";
+        eyeIconOff.style.display = "inline";
+    } else {
+        passwordInput.type = "password";
+        eyeIcon.style.display = "inline";
+        eyeIconOff.style.display = "none";
+    }
+
+    // Recharge les icônes Feather pour s'assurer qu'elles s'affichent bien
+    feather.replace();
+}
 </script>
+
 {% endblock %}

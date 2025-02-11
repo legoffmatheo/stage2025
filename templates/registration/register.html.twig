@@ -1,134 +1,186 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
-<div class="body">
-{{ parent() }}
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap Bundle JS (inclut Popper.js) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<div class="flexrow">
+    {{ parent() }}
     
-        <div class="image-register-login"></div>
-
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
-        <div class="registration-frame">
-        
-            <p>Inscription</p>
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <div class="body">
+        <div class="flexrow">
+            <div class="image-register-login"></div>
             
-
-            {{ form_start(registrationForm, {'attr': {'class': 'form-horizontal'}}) }}
-
-            <div class="form-group">
-                {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_row(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_row(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_row(registrationForm.classe, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'type': 'email'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'type': 'password'}}) }}
-                <div class="password-icon">
-                    <i data-feather="eye"></i>
-                    <i data-feather="eye-off"></i>
+            <div class="registration-frame">
+                <p>Inscription</p>
+                
+                {{ form_start(registrationForm, {'attr': {'class': 'form-horizontal'}}) }}
+                
+                <div class="form-group">
+                    {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
                 </div>
+                <div class="form-group">
+                    {{ form_row(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(registrationForm.classe, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'type': 'email'}}) }}
+                </div>
+                
+                <div class="form-group position-relative">
+                    <label for="password">Mot de passe</label>
+                    <div class="password-wrapper">
+                        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'type': 'password', 'id': 'password', 'autocomplete': 'off'}}) }}
+                        <div class="password-icon" onclick="togglePassword()">
+                            <i id="eye-icon" data-feather="eye"></i>
+                            <i id="eye-icon-off" data-feather="eye-off" style="display: none;"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'agreeterms','type': 'checkbox'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="registerButton">Créer mon compte</button>
+                </div>
+                
+                <div class="form-group">
+                    <a href="{{ path('app_login') }}">Vous avez déjà un compte ? Connectez-vous</a>
+                    <a href="{{ path('app_acceuil') }}">Continuer en tant qu'invité</a>
+                </div>
+                
+                {{ form_end(registrationForm) }}
             </div>
-
-            <div class="form-group">
-                {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'agreeterms','type': 'checkbox'}}) }}
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="registerButton">Créer mon compte</button>
-            </div>
-
-            <div class="form-group">
-                <a href="{{ path('app_login') }}">Vous avez déjà un compte ? Connectez-vous</a>
-                <a href="{{ path('app_acceuil') }}">Continuer en tant qu'invité</a>
-            </div>
-            {{ form_end(registrationForm) }}
         </div>
+    </div>
+    
+    <style>
+        .body {
+            background-color: #2D2D2D;
+        }
+        
+        @media (max-width: 768px) {
+            .flexrow {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .image-register-login {
+                order: -1;
+                height: 200px;
+                width: 100%;
+                object-fit: cover;
+            }
+            
+            .registration-frame {
+                order: 0;
+                width: 100%;
+                padding: 20px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .form-control {
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+                padding: 10px;
+                font-size: 16px;
+            }
+            
+            .registerButton {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+            
+            a {
+                display: block;
+                text-align: center;
+                margin-top: 10px;
+                font-size: 14px;
+                color: #007BFF;
+                text-decoration: none;
+            }
+        }
+        
+        /* Conteneur du champ de mot de passe */
+        .password-wrapper {
+            position: relative; /* Permet de positionner l'icône de manière absolue par rapport à ce conteneur */
+            width: 100%; /* Le champ de mot de passe prend toute la largeur disponible */
+        }
 
-</div>
+        /* Style du champ de saisie du mot de passe */
+        .password-wrapper .form-control {
+            padding-right: 40px; /* Ajoute un espace à droite pour éviter que l'icône recouvre le texte */
+        }
 
-<style>
- .body {
-    background-color: #2D2D2D;
+        /* Style de l'icône permettant d'afficher/cacher le mot de passe */
+        .password-icon {
+            position: absolute; /* Positionne l'icône par rapport au conteneur parent (password-wrapper) */
+            right: 10px; /* Place l'icône à 10px du bord droit du champ */
+            top: 50%; /* Aligne l'icône verticalement au centre du champ */
+            transform: translateY(-50%); /* Ajuste l'alignement vertical pour être bien centré */
+            cursor: pointer; /* Change le curseur en pointeur pour indiquer que l'icône est cliquable */
+            font-size: 20px; /* Définit la taille de l'icône */
+            color: #888; /* Couleur de l'icône par défaut */
+            z-index: 10; /* S'assure que l'icône reste au-dessus du champ */
+        }
+
+        /* Changement de couleur de l'icône au survol */
+        .password-icon:hover {
+            color: #333; /* Fait ressortir l'icône lorsqu'on passe la souris dessus */
+        }
+    </style>
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        feather.replace();
+        
+        // Vérifie si un champ de mot de passe est bien présent dans le formulaire
+        let passwordInput = document.querySelector("input[type='password']");
+        
+        if (passwordInput) {
+            passwordInput.id = "password"; // Ajoute l'ID pour s'assurer qu'il est bien sélectionné
+        }
+    });
+
+    function togglePassword() {
+        let passwordInput = document.querySelector("#password");
+        let eyeIcon = document.querySelector("#eye-icon");
+        let eyeIconOff = document.querySelector("#eye-icon-off");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.style.display = "none";
+            eyeIconOff.style.display = "inline";
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.style.display = "inline";
+            eyeIconOff.style.display = "none";
+        }
     }
-@media (max-width: 768px) {
-    /* Flexbox container */
-    .flexrow {
-        display: flex;
-        flex-direction: column; /* Passe en colonne */
-        width: 100%; /* Assure que le conteneur occupe toute la largeur */
-        margin: 0; /* Retirer les marges externes */
-        padding: 0; /* Retirer les padding externes */
-    }
 
-    /* Image section */
-    .image-register-login {
-        order: -1; /* Place l'image au-dessus */
-        height: 200px; /* Ajustement pour mobile */
-        display: block; /* Assure que l'élément reste visible */
-        width: 100%; /* L'image occupe toute la largeur */
-        object-fit: cover; /* L'image est redimensionnée en fonction du conteneur */
-    }
+    </script>
 
-    /* Formulaire */
-    .registration-frame {
-        order: 0; /* Formulaire en dessous */
-        width: 100%; /* Le formulaire prend toute la largeur */
-        padding: 20px; /* Un peu de marge intérieure pour un meilleur visuel */
-        box-sizing: border-box; /* Inclut le padding dans la largeur */
-        display: flex;
-        flex-direction: column; /* Organise les éléments du formulaire en colonne */
-    }
-
-    /* Champs de formulaire */
-    .form-control {
-        width: 100%; /* Les champs de formulaire occupent toute la largeur */
-        box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
-        margin-bottom: 10px; /* Espacement entre les champs */
-        padding: 10px; /* Un peu d'espace à l'intérieur des champs */
-        font-size: 16px; /* Taille du texte */
-    }
-
-    /* Bouton d'inscription */
-    .registerButton {
-        width: 100%; /* Le bouton prend toute la largeur */
-        padding: 10px; /* Un peu d'espace pour rendre le bouton plus accessible */
-        font-size: 16px; /* Ajustement de la taille du texte */
-        cursor: pointer; /* Indiquer que c'est cliquable */
-        box-sizing: border-box; /* Inclut le padding dans la largeur totale */
-        margin-top: 10px; /* Un peu de marge au-dessus du bouton */
-    }
-
-    /* Lien sous le formulaire */
-    a {
-        display: block; /* Le lien prend toute la largeur disponible */
-        text-align: center; /* Centrer le lien */
-        margin-top: 10px; /* Un peu de marge au-dessus du lien */
-        font-size: 14px; /* Taille du texte */
-        color: #007BFF; /* Couleur bleue pour le lien */
-        text-decoration: none; /* Supprimer la décoration par défaut */
-    }
-}
-</style>
-
-
-{% block footer %}
-{{ parent() }}
-{% endblock %}
 {% endblock %}
